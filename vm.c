@@ -14,6 +14,7 @@ typedef enum {
     DIV,
     DIVR,
     INC,
+    JMP,
     MOV,
     MUL,
     MULR,
@@ -78,6 +79,7 @@ int flags[NUM_FLAGS];
 
 // Function Prototypes.
 int fetch(void);
+int get_index_of(int);
 void set_register(int, int);
 void set_flags(int, int);
 void evaluate(int);
@@ -97,6 +99,11 @@ void set_flags(int FLAG, int value)
 int fetch(void) 
 {
     return program[registers[IP]];
+}
+
+int get_index_of(int loc)
+{
+
 }
 
 void evaluate(int instr)
@@ -224,6 +231,11 @@ void evaluate(int instr)
 
             break;
         }
+        case JMP: {
+            set_register(IP, stack[registers[SP]--]);
+
+            break;
+        }              
         case MOV: {
             int reg = program[++registers[IP]];
             int value = registers[program[++registers[IP]]];
