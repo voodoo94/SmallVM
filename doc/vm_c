@@ -1,0 +1,47 @@
+# This file is the documantation for the virtual machine written in C.
+-> Why this project?
+	* For gettting a deeper understanding of how computers work.
+	* It's fun :P 
+
+* Our VM will have a set of general purpose registers A, B, C, D, E and F. These can be used to store and data.
+* Also has stack pointer (SP) and instruction pointer (IP) registers.
+* A program will be a read-only set of instructions.
+* VM will be a stack based Virtual Machine. We can push and pop values from the stack and use the registers to 
+  store intermediate data.
+* Registers are implemented via an array (the registers array). Registers range from 0 to REG_NUM.
+* Instructions are to be provided via an array (the program array) for now where each instruction and the 
+  operand values are elements.
+* The instruction set and the registers represent interger values ranging from 0 to some number thus implemented via 
+  an enum.
+
+-> Register discription 
+    * A [0], B [1], C [2], D [3], E [4], F [5] -- general purpose registers.
+    * IP [6] -- Instruction Pointer.
+    * SP [7] -- Stack Pointer.
+
+--> Flag registers discription
+    * IF [0] -- Interrupt Flag. Used to disable interrupts.
+    * ZF [3] -- Zero Flag. Used when result of an operation is zero
+    * SF [2] -- Sign Flag. Stores a copy of the result's sign bit.
+    * TF [1] -- Trap Flag. Used by debuggers.
+    * CF [4] -- Carry flag. Used when there is a carry in any operation.
+
+-> Current instruction set.
+	PSH value	; pushes value to the stack
+	ADD 		; pops two values from the stack, adds them and pushes the result back to the stack.
+	ADDR REG1 REG2	; adds the values present in REG1 and REG2 and places the result in REG1.
+	PSHR REG	; pushes the value present in REG on to the stack.
+	POPR REG	; pops the stack and places the popped value on REG.
+	POP		; pops the values from the stack and prints the value.
+	SET REG value 	; sets the value on the register REG
+    CMP REG1 REG2   ; compares the values in REG1 and REG2 and sets the Zero flag if equal.
+    CLC             ; clears Carry flag.
+    CLZ             ; clears Zero flag.
+    CLI             ; clears interrupt flag.
+    CMC             ; complement the carry flag.
+    INC REG         ; increments the value in the register.
+    DEC REG         ; decrements the value in the register.
+    MOV REG1 REG2   ; copies content of register 2 to register 1.
+	HLT		; stops the program.
+
+ 
