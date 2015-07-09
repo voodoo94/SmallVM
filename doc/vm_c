@@ -27,12 +27,12 @@
     * CF [4] -- Carry flag. Used when there is a carry in any operation.
 
 -> Current instruction set.
-	PSH value	; pushes value to the stack
-	ADD 		; pops two values from the stack, adds them and pushes the result back to the stack.
+    PSH value	    ; pushes value to the stack
+	ADD 		    ; pops two values from the stack, adds them and pushes the result back to the stack.
 	ADDR REG1 REG2	; adds the values present in REG1 and REG2 and places the result in REG1.
-	PSHR REG	; pushes the value present in REG on to the stack.
-	POPR REG	; pops the stack and places the popped value on REG.
-	POP		; pops the values from the stack and prints the value.
+	PSHR REG	    ; pushes the value present in REG on to the stack.
+	POPR REG	    ; pops the stack and places the popped value on REG.
+	POP		        ; pops the values from the stack and prints the value.
 	SET REG value 	; sets the value on the register REG
     CMP REG1 REG2   ; compares the values in REG1 and REG2 and sets the Zero flag if equal.
     CLC             ; clears Carry flag.
@@ -42,6 +42,6 @@
     INC REG         ; increments the value in the register.
     DEC REG         ; decrements the value in the register.
     MOV REG1 REG2   ; copies content of register 2 to register 1.
-	HLT		; stops the program.
+	HLT		        ; stops the program.
 
  
