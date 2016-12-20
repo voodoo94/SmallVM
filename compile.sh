@@ -1,1 +1,1 @@
-gcc -Wall -Wextra -g -o vm.out vm.c
+gcc -Wall -Wextra -g -o vm.out loader.c vm.c

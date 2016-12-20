@@ -2,74 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef enum {
-    ADD,
-    ADDR,
-    CLC,
-    CLI,
-    CLZ,
-    CMC,
-    CMPR,
-    DEC,
-    DIV,
-    DIVR,
-    INC,
-    JMP,
-    MOV,
-    MUL,
-    MULR,
-    HLT,
-    POP,
-    POPR,
-    PSH,
-    PSHR,
-    SET,
-    STC,
-    STI,
-    SUB,
-    SUBR
-} instruction_set;
-
-typedef enum {
-    A,
-    B, 
-    C,
-    D,
-    E,
-    F,
-    IP,
-    SP,
-    NUM_REGISTERS
-} registers_set;
-
-typedef enum {
-    IF,
-    TF,
-    SF,
-    ZF,
-    CF,
-    NUM_FLAGS
-} flag_registers;
-
-const int program[] = {
-    PSH, 5,
-    PSH, 6,
-    ADD,
-    POP,
-    PSH, 5,
-    POP,
-    SET, A, 5,
-    SET, C, 6,
-    ADDR, A, C,
-    PSHR, A,
-    POPR, B,
-    CMPR, A, C,
-    CMPR, A, B,
-    MOV, D, A,
-    PSHR, D,
-    POP,
-    HLT
-};
+#include "loader.h"
 
 // Global Variables.
 int running = 1;
@@ -83,6 +16,7 @@ int get_index_of(int);
 void set_register(int, int);
 void set_flags(int, int);
 void evaluate(int);
+int execute(void);
 
 void set_register(int REG, int value) 
 {
@@ -99,11 +33,6 @@ void set_flags(int FLAG, int value)
 int fetch(void) 
 {
     return program[registers[IP]];
-}
-
-int get_index_of(int loc)
-{
-
 }
 
 void evaluate(int instr)
@@ -305,7 +234,7 @@ void evaluate(int instr)
     }
 }
 
-int main(void)
+int execute(void)
 {
     registers[SP] = -1;
     registers[IP] = 0;
